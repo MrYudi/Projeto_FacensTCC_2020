@@ -1,0 +1,7 @@
+
+
+.vscode/settings.json
+redeNeural/bestmodel.h5
+redeNeural/bestModelTextGen.hdf5
+*.png
+*.jpg
