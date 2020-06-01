@@ -1,7 +1,8 @@
 
 
 .vscode/settings.json
-redeNeural/bestmodel.h5
-redeNeural/bestModelTextGen.hdf5
+*.h5
+*.hdf5
 *.png
 *.jpg
+*.jpeg
