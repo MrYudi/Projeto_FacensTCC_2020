@@ -2,7 +2,7 @@ import cv2
 import os
 
 # Como funciona:
-# Aperte a letra do teclado MAIUSCULA, ele salvará na pasta com mesmo nome.
+# Aperte a letra do teclado, ele salvará na pasta com mesmo nome.
 # Aperta Escape para sair do programa
 
 video = cv2.VideoCapture(0)
@@ -22,7 +22,11 @@ while(1):
     k = cv2.waitKey(30) & 0xff # Escape
     if k == 27:
         break
-    elif 65 <= k and k <= 90:
+    elif (65 <= k and k <= 90) or (97 <= k and k <= 122):
+
+        if(97 <= k and k <= 122): #caso seja minusculo
+            k = k - 32
+
         count = 1 + count
         nomeArquivo = dicionario[k] + str(count)+'.jpg'
         caminho = path + dicionario[k]
