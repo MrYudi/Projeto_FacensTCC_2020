@@ -30,7 +30,8 @@ from sklearn.preprocessing import OneHotEncoder
 from numpy import array
 from numpy import argmax
 from datetime import datetime
-
+#import tensorflow as tf
+#from keras import backend as k
 
 # Configurações
 base = "redeNeural/"
@@ -40,8 +41,13 @@ checkpoint = base + "bestModelTextGen.hdf5"
 nEpocas = 150
 steps_per_epoch = 4
 VALIDATION_SIZE = 1
-BATCH_SIZE = 16
+BATCH_SIZE = 8
 IMG_SIZE = 200
+
+#config = tf.ConfigProto() # TensorFlow wizardry
+#config.gpu_options.allow_growth = True # Don't pre-allocate memory; allocate as-needed
+# config.gpu_options.per_process_gpu_memory_fraction = 0.5 # Only allow a total of half the GPU memory to be allocated
+#k.tensorflow_backend.set_session(tf.Session(config=config)) # Create a session with the above options specified.
 
 #imagePath = []
 y = []

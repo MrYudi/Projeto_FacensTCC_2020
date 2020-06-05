@@ -1,8 +1,6 @@
 
 
 .vscode/settings.json
-*.h5
 *.hdf5
-*.png
 *.jpg
 *.jpeg
