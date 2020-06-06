@@ -21,6 +21,9 @@ count = 0
 count_frame_delay = 0
 letra = k = 255
 
+if not os.path.isdir(path): 
+    os.mkdir(path) # Cria a pasta Dataset, caso nao exista
+
 while(1):
     _, frame = video.read()
     
