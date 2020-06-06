@@ -5,8 +5,6 @@ import os
 # Aperte a letra do teclado, ele salvará na pasta com mesmo nome.
 # Aperta Escape para sair do programa
 
-#Implementa demora 
-
 video = cv2.VideoCapture(0)
 path = 'capturaImagem/Dataset/'
 dicionario = { 255: 'NADA',
