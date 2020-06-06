@@ -5,9 +5,10 @@ import os
 # Aperte a letra do teclado, ele salvará na pasta com mesmo nome.
 # Aperta Escape para sair do programa
 
+#Implementa demora 
+
 video = cv2.VideoCapture(0)
 path = 'capturaImagem/Dataset/'
-count = 0
 dicionario = { 255: 'NADA',
 65:'A',66:'B',67:'C',68:'D',69:'E',70:'F',
 71:'G',72:'H',73:'I',74:'J',75:'K',76:'L',
@@ -16,6 +17,10 @@ dicionario = { 255: 'NADA',
 89:'Y',90:'Z'}
 limite_frame = 30
 count_frame = 30
+delay_frame = 10
+
+count = 0
+count_frame_delay = 0
 letra = k = 255
 
 while(1):
@@ -28,17 +33,22 @@ while(1):
 
     if (count_frame < limite_frame):
 
-        count_frame = 1 + count_frame
-        count = 1 + count
+        count_frame_delay = 1 + count_frame_delay
 
-        nomeArquivo = dicionario[letra] + str(count)+'.jpg'
-        caminho = path + dicionario[letra]
+        if not count_frame_delay < delay_frame:
+            count_frame_delay = 0
+        
+            count_frame = 1 + count_frame
+            count = 1 + count
 
-        if not os.path.isdir(caminho): 
-            os.mkdir(caminho) # Cria a pasta, caso nao exista
+            nomeArquivo = dicionario[letra] + str(count)+'.jpg'
+            caminho = path + dicionario[letra]
 
-        cv2.imwrite(caminho +'/'+ nomeArquivo, frame) 
-        print("Imagem: " + nomeArquivo)
+            if not os.path.isdir(caminho): 
+                os.mkdir(caminho) # Cria a pasta, caso nao exista
+
+            cv2.imwrite(caminho +'/'+ nomeArquivo, frame) 
+            print("Imagem: " + nomeArquivo)
 
     else:
         
