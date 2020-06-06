@@ -5,6 +5,7 @@ import os
 # Aperte a letra do teclado, ele salvará na pasta com mesmo nome.
 # Aperta Escape para sair do programa
 
+# Configuração:
 video = cv2.VideoCapture(0)
 path = 'capturaImagem/Dataset/'
 dicionario = { 255: 'NADA',
@@ -14,15 +15,16 @@ dicionario = { 255: 'NADA',
 83:'S',84:'T',85:'U',86:'V',87:'W',88:'X',
 89:'Y',90:'Z'}
 limite_frame = 30
-count_frame = 30
 delay_frame = 10
-
-count = 0
-count_frame_delay = 0
-letra = k = 255
 
 if not os.path.isdir(path): 
     os.mkdir(path) # Cria a pasta Dataset, caso nao exista
+
+# Iniciali [não mexer]
+count_nome_frame = 0
+count_frame = 30
+count_frame_delay = 0
+letra = k = 255
 
 while(1):
     _, frame = video.read()
@@ -40,9 +42,9 @@ while(1):
             count_frame_delay = 0
         
             count_frame = 1 + count_frame
-            count = 1 + count
+            count_nome_frame = 1 + count_nome_frame
 
-            nomeArquivo = dicionario[letra] + str(count)+'.jpg'
+            nomeArquivo = dicionario[letra] + str(count_nome_frame)+'.jpg'
             caminho = path + dicionario[letra]
 
             if not os.path.isdir(caminho): 
