@@ -35,13 +35,16 @@ while(1):
     _, frame = video.read() # Captura o frame
     
     cv2.putText(frame,classe,(0,50), cv2.FONT_HERSHEY_SIMPLEX, 2,(0,0,255),2,cv2.LINE_AA) # Coloque o texto da classe
-    cv2.imshow("Video", frame) # Exiba
+    
+    X = 10
+    Y = 150
 
     count_frame = count_frame + 1
     
-    frame = cv2.resize(frame, (tamanho_img,tamanho_img), interpolation = cv2.INTER_AREA) # Converte o tamanho da imagem
+    frame = frame[Y:Y+tamanho_img, X:X+tamanho_img] # Corte
+    #frame = cv2.resize(frame, (tamanho_img,tamanho_img), interpolation = cv2.INTER_AREA) # Converte o tamanho da imagem
     array_frame = np.asarray([img_to_array(frame)]) # pre-processamento
-
+    cv2.imshow("Video", frame) # Exiba
     if(count_frame >= frame_analise): # Análisa
         prediction = model.predict(array_frame) # Prediz
         classe = dicionarioAtual[np.argmax(prediction, axis = 1)[0]] # Pega o maior valor da array
@@ -61,5 +64,8 @@ while(1):
     if k == 27:
         break
 
+    cv2.rectangle(frame, (X, Y), (X + tamanho_img, Y + tamanho_img), (0,255,0), 0)
+    cv2.imshow("Video", frame) # Exiba
+    
 video.release()
 cv2.destroyAllWindows()

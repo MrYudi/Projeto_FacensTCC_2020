@@ -38,11 +38,12 @@ base = "redeNeural/"
 datasetPath = base + "Dataset/"
 modelName = base + "bestmodel.h5"
 checkpoint = base + "bestModelTextGen.hdf5"
-nEpocas = 150
-steps_per_epoch = 4
+nEpocas = 100
+steps_per_epoch = 20
 VALIDATION_SIZE = 1
-BATCH_SIZE = 8
+BATCH_SIZE = 16
 IMG_SIZE = 200
+TAMANHO_TREINO = 0.2
 
 #config = tf.ConfigProto() # TensorFlow wizardry
 #config.gpu_options.allow_growth = True # Don't pre-allocate memory; allocate as-needed
@@ -77,7 +78,7 @@ integer_encoded = integer_encoded.reshape(len(integer_encoded), 1)
 y = onehot_encoder.fit_transform(integer_encoded)
 print("Fim - Ajeita os dados")
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=0.5, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=TAMANHO_TREINO, random_state=42)
 
 #VGG
 print("Arquitetura")

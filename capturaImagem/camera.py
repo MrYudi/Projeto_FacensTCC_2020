@@ -24,6 +24,9 @@ video = cv2.VideoCapture(0)
 count_nome_frame = 0
 count_frame_delay = 0
 letra = k = 255
+X = 10
+Y = 150
+tamanho_img = 200
 
 while(1):
     _, frame = video.read()
@@ -48,8 +51,9 @@ while(1):
 
             if not os.path.isdir(caminho): 
                 os.mkdir(caminho) # Cria a pasta, caso nao exista
-
-            cv2.imwrite(caminho +'/'+ nomeArquivo, frame) 
+            
+            cropFrame = frame[Y:Y+tamanho_img, X:X+tamanho_img] # Corte
+            cv2.imwrite(caminho +'/'+ nomeArquivo, cropFrame) 
             print("Imagem: " + nomeArquivo)
 
     else:
@@ -60,7 +64,8 @@ while(1):
 
             letra = k
             count_frame = 0
-
+            
+    cv2.rectangle(frame, (X, Y), (X + tamanho_img, Y + tamanho_img), (0,255,0), 0)
     cv2.putText(frame,"Frame: "+str(count_frame),(0,50), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),2,cv2.LINE_AA) 
     cv2.putText(frame,"Letra: "+dicionario[letra],(0,100), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),2,cv2.LINE_AA) 
     cv2.imshow("Video", frame)
