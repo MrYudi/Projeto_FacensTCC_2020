@@ -30,23 +30,22 @@ from sklearn.preprocessing import OneHotEncoder
 from numpy import array
 from numpy import argmax
 from datetime import datetime
-#import tensorflow as tf
-#from keras import backend as k
+import tensorflow as tf
 
 # Configurações
 base = "redeNeural/"
 datasetPath = base + "Dataset/"
 modelName = base + "bestmodel.h5"
 checkpoint = base + "bestModelTextGen.hdf5"
-nEpocas = 100
+nEpocas = 50
 steps_per_epoch = 20
 VALIDATION_SIZE = 1
-BATCH_SIZE = 16
+BATCH_SIZE = 12
 IMG_SIZE = 200
-TAMANHO_TREINO = 0.2
+TAMANHO_TEST = 0.3
 
 #config = tf.ConfigProto() # TensorFlow wizardry
-#config.gpu_options.allow_growth = True # Don't pre-allocate memory; allocate as-needed
+#config.gpu_options.allow_growth = True # pre-allocate memory
 # config.gpu_options.per_process_gpu_memory_fraction = 0.5 # Only allow a total of half the GPU memory to be allocated
 #k.tensorflow_backend.set_session(tf.Session(config=config)) # Create a session with the above options specified.
 
@@ -78,7 +77,7 @@ integer_encoded = integer_encoded.reshape(len(integer_encoded), 1)
 y = onehot_encoder.fit_transform(integer_encoded)
 print("Fim - Ajeita os dados")
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=TAMANHO_TREINO, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=TAMANHO_TEST, random_state=42)
 
 #VGG
 print("Arquitetura")
