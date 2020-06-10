@@ -1,6 +1,6 @@
 
-
-.vscode/settings.json
 *.hdf5
-*.jpg
-*.jpeg
+*.h5
+Dataset/*
+.vscode/settings.json
+RedeNeural/Grafico_rede/*
