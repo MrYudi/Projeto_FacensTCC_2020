@@ -3,6 +3,9 @@ TCC sobre jogo da forca usando Libras, com objetivo de ensina o alfabeto de Libr
 
 -------------------------------------------------------------------------------------------------------
 
-redeNeural: Treinamento da Rede Neural VGG.
+redeNeural/Treinamento.py: Treinamento da Rede Neural [SqueezeNet].
 
-capturaImagem: Captura das imagens utilizadas para o treinamento da Rede Neural VGG.
+salvaDataset.py: Captura das imagens utilizadas para o treinamento da Rede Neural VGG.
+
+predict.py: Prediz o resultado da imagem.
+
