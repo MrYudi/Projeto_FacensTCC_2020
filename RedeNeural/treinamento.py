@@ -21,7 +21,7 @@ EPOCHS = 20
 TAMANHO_TEST = 0.2
 VALIDATION_SIZE = 1
 BATCH_SIZE = 4
-steps_per_epoch = 4
+STEPS_PER_EPOCH = 4
 
 # Carrega os dados
 print("Carrega dataset")
@@ -103,7 +103,7 @@ compute_steps_per_epoch = lambda x: int(math.ceil(1. * x / BATCH_SIZE))
 val_steps = compute_steps_per_epoch(VALIDATION_SIZE)
 
 # Inicia o Treinamento
-history = model.fit(X_train,  y_train, epochs=EPOCHS, steps_per_epoch=steps_per_epoch, callbacks=[es, mc], validation_steps=val_steps, validation_data=(X_test, y_test))
+history = model.fit(X_train,  y_train, epochs=EPOCHS, steps_per_epoch=STEPS_PER_EPOCH, callbacks=[es, mc], validation_steps=val_steps, validation_data=(X_test, y_test))
 
 if not os.path.isdir(BASE_PATH+GRAFICO_PATH): 
     os.mkdir(BASE_PATH+GRAFICO_PATH) # Cria a pasta Dataset, caso nao exista
@@ -128,5 +128,5 @@ plt.legend(['train', 'test'], loc='upper left')
 plt.savefig(BASE_PATH+GRAFICO_PATH+"/perca_"+timestampStr+".png")
 plt.clf()
 
-# save the model for later use
-model.save(base +"libras-alfabeto-model.h5")
+# Salva o modelo
+model.save(BASE_PATH +"libras-alfabeto-model.h5")
