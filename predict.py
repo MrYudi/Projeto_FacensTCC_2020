@@ -1,5 +1,4 @@
 from keras.models import load_model
-from keras.preprocessing.image import img_to_array
 import os
 import cv2
 import numpy as np
