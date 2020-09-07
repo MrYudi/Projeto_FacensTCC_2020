@@ -72,7 +72,7 @@ print("Fim - Ajeita os dados")
 
 # Arquitetura SqueezeNet
 print("Arquitetura")
-model = model = Sequential([
+model = Sequential([
     SqueezeNet(input_shape=(227, 227, 3), include_top=False),
     Dropout(0.5),
     Convolution2D(len(CLASS_MAP), (1, 1), padding='valid'),
