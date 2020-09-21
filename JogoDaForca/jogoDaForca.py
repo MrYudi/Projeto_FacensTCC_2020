@@ -1,6 +1,6 @@
 # BIBLIOTECA
 
-import sys, pygame
+import sys, pygame, re
 from pygame.locals import * # Algumas constante de Teclado
 
 # Verificando erros de inicializacao
@@ -11,6 +11,12 @@ if check_errors[1] > 0:
 else:
     print("O Pygame foi inicializado com sucesso!")
 
+#---------------------------------------------
+# Configurações
+LARGURA_TELA = 500
+ALTURA_TELA = 500
+FONTE = "comicsans"
+BASE_IMAGEM = "JogoDaForca\imagem\\"
 #---------------------------------------------
 # CLASSES E OBJETOS
 
@@ -42,23 +48,97 @@ class button():
                 return True
             
         return False
-   
+
+class jogo_logica():
+    def __init__(self):
+        self.vida = 8
+        self.palavra_pergunta = self.palavra_reposta = ""
+        self.historico = ""
+        self.letra = ""
+
+    # Verifica se a palavra ou letra pode esta dentro das regras
+    def __verificar(self,palavra):
+        
+        temp = re.search(r"[^A-Z]+", palavra)
+        
+        if(not temp == None):
+            return False
+        else:
+            return True
+        
+    # Recebe a palavra do usuario
+    def recebePalavra(self):
+        while True:
+            palavra = input("Digite uma palavra: ").upper()
+
+            if(self.__verificar(palavra)):
+                self.palavra_reposta = palavra
+                return palavra
+            else:
+                print("Palavra invalida")
+
+    # Recebe Letra do usuario
+    def recebeLetra(self):
+        while True:
+            self.letra = input("Digite uma letra: ").upper()
+
+            if(not (len(self.letra) > 1) and self.__verificar(self.letra)):
+                return self.letra
+            else:
+                print("Não é uma letra")
+
+    # Estado do jogo (perdeu? ganhou?)
+    def status(self):
+        
+        # Derrota
+        if(self.vida <= 0):
+            print("Você perdeu. A resposta é: "+self.palavra_reposta)
+            return False
+
+        # Vitoria
+        if(not (self.palavra_pergunta.find(self.palavra_reposta) == -1)):
+            print("Você ganhou")
+            return True
+        return None
+
+    # Substitui a letra na palavra (pergunta)
+    def substitui(self):
+
+        temp = ""
+        for p,r in zip(self.palavra_pergunta,self.palavra_reposta):
+            if(r == self.letra):
+                temp += r
+            else:
+                temp += p
+
+        self.letra = ""
+        self.palavra_pergunta = temp
+
+    def perde_vida(self):
+        self.historico = self.historico+" "+self.letra 
+        self.vida = self.vida - 1
+        self.letra = ""
+
+
 def draw_text(text, font, color, surface, x, y):
     textobj = font.render(text, 1, color)
     textrect = textobj.get_rect()
     textrect.topleft = (x, y)
     surface.blit(textobj, textrect)
 
+def draw_img(source, x, y,surface):
+    surface.blit(pygame.image.load(source), (x, y)) 
+
 #---------------------------------------------
 # TELAS
 
 # MENU PRINCIPAL
-startButton = button((0,255,0),120,210,250,100,"Iniciar")
+startButton = button((0,255,0),(LARGURA_TELA/2)-125,(ALTURA_TELA/2)-50,250,100,"Iniciar")
 
 def main_menu():  
 
     screen.fill((0, 0, 0))
-    draw_text('Jogo da forca', pygame.font.SysFont('comicsans', 60), (255, 255, 255), screen, 110, 40)
+    draw_text('Jogo da forca', pygame.font.SysFont(FONTE, 60), (255, 255, 255), screen, 110, 60)
           
     # Lista de eventos MENU
     for event in pygame.event.get():
@@ -86,9 +166,13 @@ def main_menu():
     return True
 
 # JOGO DA FORCA
-def jogo_da_forca():
+def jogo_da_forca(jogo):
 
-    screen.fill((255,255,255))
+    screen.fill((0,0,0))
+    jogo.status() # Precisa demostra a vitoria e derrota
+
+    #draw_img(BASE_IMAGEM+str(jogo.vida)+".png",(LARGURA_TELA/2)-75,30,screen)
+
 
     # LISTA DE EVENTO JOGO DA FORCA
     for event in pygame.event.get():
@@ -99,24 +183,54 @@ def jogo_da_forca():
     
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
-                print("EVENTO: CANCELO PARTIDA")
+                print("EVENTO: Cancelo partida")
                 return True
+
+            print("Vida: " + str(jogo.vida))
+            print("Letra usadas:"+jogo.historico)
+            print(jogo.palavra_pergunta)
+
+            # Recebe a letra do usuario
+            jogo.recebeLetra() # ajeita para teste
+
+            # Essa letra já foi?
+            if(not (jogo.historico.find(jogo.letra) == -1)):
+                # Já foi
+                print("Essa letra já foi usado")
+
+            # Existe essa letra?
+            elif(not (jogo.palavra_reposta.find(jogo.letra) == -1)):
+                # Encontrou
+                jogo.substitui()     
+
+            else:
+                # Não encotrou, então perde vida
+                jogo.perde_vida()
 
     return False
 
 #---------------------------------------------
 # LOOP PRINCIPAL  
 
-screen = pygame.display.set_mode((500, 500)) # Tamanho da tela
+screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA)) # Tamanho da tela
 pygame.display.set_caption("Jogo da forca") # Titulo da tela
 menu = True
+jogo = jogo_logica()
 
 while True:
 
     if menu:
         menu = main_menu()       
     else:
-        menu = jogo_da_forca()
+        if(len(jogo.palavra_reposta) == 0 ):
+            jogo.recebePalavra()
+            jogo.palavra_pergunta = ""
+
+            #Texto do campo "vazio"
+            for i in range(0,len(jogo.palavra_reposta)):
+                jogo.palavra_pergunta = jogo.palavra_pergunta + "_"
+        else:
+            menu = jogo_da_forca(jogo)
 
     pygame.display.update() # Atualiza a tela do jogo
 
