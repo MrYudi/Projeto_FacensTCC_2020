@@ -55,6 +55,16 @@ class jogo_logica():
         self.palavra_pergunta = self.palavra_reposta = ""
         self.historico = ""
         self.letra = ""
+        self.derrota = False
+        self.vitoria = False
+
+    def restart(self):
+        self.vida = 8
+        self.palavra_pergunta = self.palavra_reposta = ""
+        self.historico = ""
+        self.letra = ""
+        self.derrota = False
+        self.vitoria = False
 
     # Verifica se a palavra ou letra pode esta dentro das regras
     def __verificar(self,palavra):
@@ -73,9 +83,16 @@ class jogo_logica():
 
             if(self.__verificar(palavra)):
                 self.palavra_reposta = palavra
+                self.__inicializa_pergunta()
                 return palavra
             else:
                 print("Palavra invalida")
+
+    # Prepara a quantidade de espaço na pergunta
+    def __inicializa_pergunta(self):
+        self.palavra_pergunta = ""
+        for i in range(0,len(self.palavra_reposta)):
+            self.palavra_pergunta = self.palavra_pergunta + "-"
 
     # Recebe Letra do usuario
     def recebeLetra(self):
@@ -92,14 +109,13 @@ class jogo_logica():
         
         # Derrota
         if(self.vida <= 0):
-            print("Você perdeu. A resposta é: "+self.palavra_reposta)
-            return False
+            #print("Você perdeu. A resposta é: "+self.palavra_reposta)
+            self.derrota = True
 
         # Vitoria
         if(not (self.palavra_pergunta.find(self.palavra_reposta) == -1)):
-            print("Você ganhou")
-            return True
-        return None
+            #print("Você ganhou")
+            self.vitoria = True
 
     # Substitui a letra na palavra (pergunta)
     def substitui(self):
@@ -114,11 +130,11 @@ class jogo_logica():
         self.letra = ""
         self.palavra_pergunta = temp
 
+    # Quando o usuario erra a letra
     def perde_vida(self):
         self.historico = self.historico+" "+self.letra 
         self.vida = self.vida - 1
         self.letra = ""
-
 
 def draw_text(text, font, color, surface, x, y):
     textobj = font.render(text, 1, color)
@@ -166,13 +182,21 @@ def main_menu():
     return True
 
 # JOGO DA FORCA
+deduziButton = button((0,255,0),200,50,250,100,"Tentar")
+
 def jogo_da_forca(jogo):
 
+    deduzi = False # Variavel que libera para o usuario escolher a letra 
+
     screen.fill((0,0,0))
-    jogo.status() # Precisa demostra a vitoria e derrota
-
-    #draw_img(BASE_IMAGEM+str(jogo.vida)+".png",(LARGURA_TELA/2)-75,30,screen)
-
+    jogo.status() # Verifica vitoria ou derrota
+    
+    # Design da tela
+    draw_img(BASE_IMAGEM+str(jogo.vida)+".png",50,30,screen)
+    draw_text(jogo.palavra_pergunta,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,200,170)
+    draw_text("Letras usadas:",pygame.font.SysFont(FONTE, 60),(255,255,255),screen,30,250)
+    draw_text(jogo.historico,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,25,300)
+    deduziButton.draw(screen)    
 
     # LISTA DE EVENTO JOGO DA FORCA
     for event in pygame.event.get():
@@ -184,28 +208,52 @@ def jogo_da_forca(jogo):
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 print("EVENTO: Cancelo partida")
+                jogo.palavra_reposta = ""
                 return True
 
-            print("Vida: " + str(jogo.vida))
-            print("Letra usadas:"+jogo.historico)
-            print(jogo.palavra_pergunta)
-
-            # Recebe a letra do usuario
-            jogo.recebeLetra() # ajeita para teste
-
-            # Essa letra já foi?
-            if(not (jogo.historico.find(jogo.letra) == -1)):
-                # Já foi
-                print("Essa letra já foi usado")
-
-            # Existe essa letra?
-            elif(not (jogo.palavra_reposta.find(jogo.letra) == -1)):
-                # Encontrou
-                jogo.substitui()     
-
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if deduziButton.isOver(pygame.mouse.get_pos()):
+                print("EVENTO: Botão deduzi pressionado")
+                deduzi = True 
+        if event.type == pygame.MOUSEMOTION:
+            if deduziButton.isOver(pygame.mouse.get_pos()):
+                deduziButton.color = (255,0,0)
             else:
-                # Não encotrou, então perde vida
-                jogo.perde_vida()
+                deduziButton.color = (0,255,0)
+
+    #jogo.derrota = True
+    #jogo.vitoria = True    
+
+    if(jogo.vitoria):
+        draw_text("Você ganhou",pygame.font.SysFont(FONTE, 40),(0,255,0),screen,40,350)
+        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(255,255,255),screen,40,440)
+
+    elif(jogo.derrota):
+        draw_text("Você perdeu",pygame.font.SysFont(FONTE, 40),(255,0,0),screen,40,350)
+        draw_text("A resposta é: "+jogo.palavra_reposta,pygame.font.SysFont(FONTE, 40),(255,0,0),screen,40,390)
+        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(255,255,255),screen,40,440)
+
+    elif(deduzi):
+        #print("Vida: " + str(jogo.vida))
+        #print("Letra usadas:"+jogo.historico)
+        #print(jogo.palavra_pergunta)
+
+        # Recebe a letra do usuario
+        jogo.recebeLetra() # ajeita para teste
+
+        # Essa letra já foi?
+        if(not (jogo.historico.find(jogo.letra) == -1)):
+            # Já foi
+            print("Essa letra já foi usado")
+
+        # Existe essa letra?
+        elif(not (jogo.palavra_reposta.find(jogo.letra) == -1)):
+            # Encontrou
+            jogo.substitui()     
+
+        else:
+            # Não encotrou, então perde vida
+            jogo.perde_vida()
 
     return False
 
@@ -221,16 +269,11 @@ while True:
 
     if menu:
         menu = main_menu()       
+        jogo.restart() #limpa as variaveis
     else:
-        if(len(jogo.palavra_reposta) == 0 ):
+        if(len(jogo.palavra_reposta) == 0):
             jogo.recebePalavra()
-            jogo.palavra_pergunta = ""
-
-            #Texto do campo "vazio"
-            for i in range(0,len(jogo.palavra_reposta)):
-                jogo.palavra_pergunta = jogo.palavra_pergunta + "_"
-        else:
-            menu = jogo_da_forca(jogo)
+        menu = jogo_da_forca(jogo)
 
     pygame.display.update() # Atualiza a tela do jogo
 
