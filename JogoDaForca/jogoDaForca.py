@@ -1,6 +1,7 @@
 # BIBLIOTECA
 
 import sys, pygame, re
+import subprocess # Chama outros scripts do python
 from pygame.locals import * # Algumas constante de Teclado
 
 # Verificando erros de inicializacao
@@ -58,6 +59,7 @@ class jogo_logica():
         self.derrota = False
         self.vitoria = False
 
+    # Reinicia as variaveis
     def restart(self):
         self.vida = 8
         self.palavra_pergunta = self.palavra_reposta = ""
@@ -234,13 +236,11 @@ def jogo_da_forca(jogo):
         draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(255,255,255),screen,40,440)
 
     elif(deduzi):
-        #print("Vida: " + str(jogo.vida))
-        #print("Letra usadas:"+jogo.historico)
-        #print(jogo.palavra_pergunta)
 
         # Recebe a letra do usuario
-        jogo.recebeLetra() # ajeita para teste
-
+        #jogo.recebeLetra() # Recebe letra pelo console, apenas para debug
+        jogo.letra = subprocess.check_output([sys.executable, "JogoDaForca/cameraDeduz.py"]).decode("utf-8")[0]
+        
         # Essa letra já foi?
         if(not (jogo.historico.find(jogo.letra) == -1)):
             # Já foi
