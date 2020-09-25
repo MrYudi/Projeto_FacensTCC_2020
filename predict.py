@@ -1,6 +1,4 @@
 from keras.models import load_model
-from keras.preprocessing.image import img_to_array
-import os
 import cv2
 import numpy as np
 
@@ -21,9 +19,6 @@ frame_analise = 10 # quantos frame irão passa para realizar uma análise
 
 dicionarioAtual = {
 0:'A',1:'B',2:'L'}
-
-def mapper(val):
-    return dicionarioAtual[val]
 
 # Carrega o Modelo
 print("Carregando modelo...")
