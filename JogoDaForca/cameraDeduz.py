@@ -9,7 +9,7 @@ import numpy as np
 # Configuração
 video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 tamanho_img = 400
-frame_analise = 10 # quantos frame irão passa para realizar uma análise
+frame_analise = 25 # quantos frame irão passa para realizar uma análise
 X = 60
 Y = 60
 FILTRO_CONFIRMACAO = 5 # Se o programa confirma, por exemplo, letra A cinco vezes seguidos, entao usuario esta realmente fazendo A
@@ -27,11 +27,15 @@ dicionarioAtual = {
 model = load_model('RedeNeural/libras-alfabeto-model.h5')
 
 # Main
-classe_anterior = classe_atual =  '?' # Anterior -> deduçao antiga | atual -> da tentativa atual
+classe_anterior = classe_atual = '?' # Anterior -> deduçao antiga | atual -> da tentativa atual
 count_frame = count_filtro = 0
+analise = False # A camera pode começa a análisa
 while(True):
     _, frame = video.read() # Captura o frame
     frame_original = frame.copy()
+
+    if not analise:
+        cv2.putText(frame_original,'Aperte "Enter" para iniciar',(60,40), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),2,cv2.LINE_AA) # Coloque o texto da classe_atual
 
     cv2.putText(frame_original,classe_atual,(0,50), cv2.FONT_HERSHEY_SIMPLEX, 2,(0,0,255),2,cv2.LINE_AA) # Coloque o texto da classe_atual
 
@@ -41,7 +45,7 @@ while(True):
     frame = cv2.resize(frame, (227, 227)) # Pre-processamento
 
     
-    if(count_frame >= frame_analise): # Análisa
+    if(analise and count_frame >= frame_analise): # Análisa
         prediction = model.predict(np.array([frame])) # Prediz
         classe_atual = dicionarioAtual[np.argmax(prediction, axis = 1)[0]] # Pega o maior valor da array
 
@@ -66,10 +70,12 @@ while(True):
     if k == 27:
         classe_atual = '?'
         break
+    if k == ord('\r'): # Enter
+        analise = True
 
     cv2.rectangle(frame_original, (X, Y), (X + tamanho_img, Y + tamanho_img), (0,255,0), 0)
-    #cv2.imshow("Video", frame) # Exiba imagem que sera enviado para rede neural, afins de Debug
-    cv2.imshow("Video2", frame_original) # Exiba
+    #cv2.imshow("Imagem capturada", frame) # Exiba imagem que sera enviado para rede neural, afins de Debug
+    cv2.imshow("Camera", frame_original) # Exiba
     
 video.release()
 cv2.destroyAllWindows()
