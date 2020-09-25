@@ -1,6 +1,7 @@
 # BIBLIOTECA
 
-import sys, pygame, re
+import sys, pygame, random
+import re # Regex
 import subprocess # Chama outros scripts do python
 from pygame.locals import * # Algumas constante de Teclado
 
@@ -14,10 +15,11 @@ else:
 
 #---------------------------------------------
 # Configurações
-LARGURA_TELA = 500
-ALTURA_TELA = 500
-FONTE = "comicsans"
-BASE_IMAGEM = "JogoDaForca\imagem\\"
+LARGURA_TELA = 500 # Não é recomendado alterar esse campo
+ALTURA_TELA = 500 # Não é recomendado alterar esse campo
+FONTE = "comicsans" # Não é recomendado alterar esse campo
+BASE_IMAGEM = "JogoDaForca\imagem\\" # Local das imagens do jogo da forca
+listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis
 #---------------------------------------------
 # CLASSES E OBJETOS
 
@@ -79,16 +81,25 @@ class jogo_logica():
             return True
         
     # Recebe a palavra do usuario
-    def recebePalavra(self):
-        while True:
-            palavra = input("Digite uma palavra: ").upper()
+    def recebePalavra(self,palavra=None):
+        if palavra == None:
+            while True:
+                palavra = input("Digite uma palavra: ").upper()
 
+                if(self.__verificar(palavra)):
+                    self.palavra_reposta = palavra
+                    self.__inicializa_pergunta()
+                    return palavra
+                else:
+                    print("Palavra invalida")
+        else:
+            palavra = palavra.upper()
             if(self.__verificar(palavra)):
                 self.palavra_reposta = palavra
                 self.__inicializa_pergunta()
                 return palavra
             else:
-                print("Palavra invalida")
+                raise("A palavra: "+palavra+" esta em um formato inaceitavel.")
 
     # Prepara a quantidade de espaço na pergunta
     def __inicializa_pergunta(self):
@@ -151,9 +162,10 @@ def draw_img(source, x, y,surface):
 # TELAS
 
 # MENU PRINCIPAL
-startButton = button((0,255,0),(LARGURA_TELA/2)-125,(ALTURA_TELA/2)-50,250,100,"Iniciar")
+startButton = button((0,255,0),(LARGURA_TELA/2)-175,(ALTURA_TELA/2)-50,350,100,"Aleatório")
+customButton = button((0,255,0),(LARGURA_TELA/2)-175,(ALTURA_TELA/2)+60,350,100,"Escolha palavra")
 
-def main_menu():  
+def main_menu(jogo):  
 
     screen.fill((0, 0, 0))
     draw_text('Jogo da forca', pygame.font.SysFont(FONTE, 60), (255, 255, 255), screen, 110, 60)
@@ -173,6 +185,12 @@ def main_menu():
         if event.type == pygame.MOUSEBUTTONDOWN:
             if startButton.isOver(pygame.mouse.get_pos()):
                 print("EVENTO: Botão Iniciar pressionado")
+                jogo.recebePalavra(listaPalavra[random.randint(0, len(listaPalavra)-1)])
+                print(jogo.palavra_reposta)
+                return False
+            if customButton.isOver(pygame.mouse.get_pos()):
+                print("EVENTO: Botão Custom pressionado")
+                jogo.recebePalavra()
                 return False
         if event.type == pygame.MOUSEMOTION:
             if startButton.isOver(pygame.mouse.get_pos()):
@@ -180,7 +198,13 @@ def main_menu():
             else:
                 startButton.color = (0,255,0)
 
+            if customButton.isOver(pygame.mouse.get_pos()):
+                customButton.color = (255,0,0)
+            else:
+                customButton.color = (0,255,0)
+
     startButton.draw(screen,(0,0,0))
+    customButton.draw(screen,(0,0,0))
     return True
 
 # JOGO DA FORCA
@@ -268,11 +292,9 @@ jogo = jogo_logica()
 while True:
 
     if menu:
-        menu = main_menu()       
         jogo.restart() #limpa as variaveis
+        menu = main_menu(jogo)       
     else:
-        if(len(jogo.palavra_reposta) == 0):
-            jogo.recebePalavra()
         menu = jogo_da_forca(jogo)
 
     pygame.display.update() # Atualiza a tela do jogo
