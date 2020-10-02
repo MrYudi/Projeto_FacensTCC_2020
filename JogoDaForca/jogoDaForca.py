@@ -220,7 +220,7 @@ def jogo_da_forca(jogo):
     # Design da tela
     draw_img(BASE_IMAGEM+str(jogo.vida)+".png",50,30,screen)
     draw_text(jogo.palavra_pergunta,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,200,170)
-    draw_text("Letras usadas:",pygame.font.SysFont(FONTE, 60),(255,255,255),screen,30,250)
+    draw_text("Letras erradas:",pygame.font.SysFont(FONTE, 60),(255,255,255),screen,30,250)
     draw_text(jogo.historico,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,25,300)
     deduziButton.draw(screen)    
 
