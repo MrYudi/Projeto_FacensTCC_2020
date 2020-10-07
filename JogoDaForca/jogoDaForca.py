@@ -20,6 +20,7 @@ ALTURA_TELA = 500 # Não é recomendado alterar esse campo
 FONTE = "comicsans" # Não é recomendado alterar esse campo
 BASE_IMAGEM = "JogoDaForca\imagem\\" # Local das imagens do jogo da forca
 listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis
+ICON = BASE_IMAGEM + "7.png" # ICON
 #---------------------------------------------
 # CLASSES E OBJETOS
 
@@ -285,6 +286,7 @@ def jogo_da_forca(jogo):
 # LOOP PRINCIPAL  
 
 screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA)) # Tamanho da tela
+pygame.display.set_icon(pygame.image.load(ICON))
 pygame.display.set_caption("Jogo da forca") # Titulo da tela
 menu = True
 jogo = jogo_logica()
