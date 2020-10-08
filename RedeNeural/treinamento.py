@@ -17,11 +17,11 @@ IMG_SAVE_PATH = 'Dataset'
 BASE_PATH = 'RedeNeural/'
 GRAFICO_PATH = 'Grafico_rede'
 
-EPOCHS = 20
+EPOCHS = 50
 TAMANHO_TEST = 0.2
 VALIDATION_SIZE = 1
 BATCH_SIZE = 4
-STEPS_PER_EPOCH = 4
+STEPS_PER_EPOCH = 16
 
 # Carrega os dados
 print("Carrega dataset")
