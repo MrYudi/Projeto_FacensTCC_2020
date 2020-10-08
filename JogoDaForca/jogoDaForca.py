@@ -1,5 +1,4 @@
 # BIBLIOTECA
-
 import sys, pygame, random
 import re # Regex
 import subprocess # Chama outros scripts do python
@@ -14,12 +13,16 @@ else:
     print("O Pygame foi inicializado com sucesso!")
 
 #---------------------------------------------
-# Configurações
+# Configurações Gerais
 LARGURA_TELA = 500 # Não é recomendado alterar esse campo
 ALTURA_TELA = 500 # Não é recomendado alterar esse campo
 FONTE = "comicsans" # Não é recomendado alterar esse campo
+
 BASE_IMAGEM = "JogoDaForca\imagem\\" # Local das imagens do jogo da forca
-listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis
+listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis, é recomendado que não tenha mais de 10 letra.
+ICON = BASE_IMAGEM + "icon.png" # ICON
+
+CAMERA = True # A letra será capturado pela camera ou console? Afins de DEBUG
 #---------------------------------------------
 # CLASSES E OBJETOS
 
@@ -35,7 +38,7 @@ class button():
     def draw(self,win,outline=None):
         #Call this method to draw the button on the screen
         if outline:
-            pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
+            pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),3)
             
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
         
@@ -203,8 +206,8 @@ def main_menu(jogo):
             else:
                 customButton.color = (0,255,0)
 
-    startButton.draw(screen,(0,0,0))
-    customButton.draw(screen,(0,0,0))
+    startButton.draw(screen,(255,255,255))
+    customButton.draw(screen,(255,255,255))
     return True
 
 # JOGO DA FORCA
@@ -218,11 +221,11 @@ def jogo_da_forca(jogo):
     jogo.status() # Verifica vitoria ou derrota
     
     # Design da tela
-    draw_img(BASE_IMAGEM+str(jogo.vida)+".png",50,30,screen)
+    draw_img(BASE_IMAGEM+str(jogo.vida)+".png",30,30,screen)
     draw_text(jogo.palavra_pergunta,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,200,170)
-    draw_text("Letras usadas:",pygame.font.SysFont(FONTE, 60),(255,255,255),screen,30,250)
+    draw_text("Letras erradas:",pygame.font.SysFont(FONTE, 60),(255,255,255),screen,30,250)
     draw_text(jogo.historico,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,25,300)
-    deduziButton.draw(screen)    
+    deduziButton.draw(screen,(255,255,255))    
 
     # LISTA DE EVENTO JOGO DA FORCA
     for event in pygame.event.get():
@@ -261,9 +264,13 @@ def jogo_da_forca(jogo):
 
     elif(deduzi):
 
-        # Recebe a letra do usuario
-        #jogo.recebeLetra() # Recebe letra pelo console, apenas para debug
-        jogo.letra = subprocess.check_output([sys.executable, "JogoDaForca/cameraDeduz.py"]).decode("utf-8")[0]
+        # Recebe a letra do usuario (Camera? Console?)
+        if CAMERA:  
+            # Camera habilitado para IA
+            jogo.letra = subprocess.check_output([sys.executable, "JogoDaForca/cameraDeduz.py"]).decode("utf-8")[0]
+        else:
+            # Recebe letra pelo console, apenas para debug
+            jogo.recebeLetra() 
         
         # Essa letra já foi?
         if(not (jogo.historico.find(jogo.letra) == -1)):
@@ -285,6 +292,7 @@ def jogo_da_forca(jogo):
 # LOOP PRINCIPAL  
 
 screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA)) # Tamanho da tela
+pygame.display.set_icon(pygame.image.load(ICON))
 pygame.display.set_caption("Jogo da forca") # Titulo da tela
 menu = True
 jogo = jogo_logica()
