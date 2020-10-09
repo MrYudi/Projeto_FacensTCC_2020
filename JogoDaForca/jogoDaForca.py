@@ -14,15 +14,20 @@ else:
 
 #---------------------------------------------
 # Configurações Gerais
-LARGURA_TELA = 500 # Não é recomendado alterar esse campo
-ALTURA_TELA = 500 # Não é recomendado alterar esse campo
-FONTE = "comicsans" # Não é recomendado alterar esse campo
+LARGURA_TELA = 700 # Não é recomendado alterar esse campo
+ALTURA_TELA = 600 # Não é recomendado alterar esse campo
+FONTE = "georgia" # Não é recomendado alterar esse campo
+
+COR_BOTAO = (28,147,64)
+COR_BOTAO_SELECIONADO = (153,21,21)
+COR_BOTAO_BORDA = (0,96,174)
 
 BASE_IMAGEM = "JogoDaForca\imagem\\" # Local das imagens do jogo da forca
 listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis, é recomendado que não tenha mais de 10 letra.
 ICON = BASE_IMAGEM + "icon.png" # ICON
 
-CAMERA = True # A letra será capturado pela camera ou console? Afins de DEBUG
+CAMERA = False # A letra será capturado pela camera ou console? Afins de DEBUG
+MOSTRA_PALAVRA = True # Caso sejá aleatorio, será exibido a palavra no console.
 #---------------------------------------------
 # CLASSES E OBJETOS
 
@@ -43,7 +48,7 @@ class button():
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
         
         if self.text != '':
-            font = pygame.font.SysFont('comicsans', 60)
+            font = pygame.font.SysFont(FONTE, 40)
             text = font.render(self.text, 1, (0,0,0))
             win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
@@ -165,13 +170,14 @@ def draw_img(source, x, y,surface):
 # TELAS
 
 # MENU PRINCIPAL
-startButton = button((0,255,0),(LARGURA_TELA/2)-175,(ALTURA_TELA/2)-50,350,100,"Aleatório")
-customButton = button((0,255,0),(LARGURA_TELA/2)-175,(ALTURA_TELA/2)+60,350,100,"Escolha palavra")
+startButton = button(COR_BOTAO,(LARGURA_TELA/2)-175,(ALTURA_TELA/2)-50,350,100,"Aleatório")
+customButton = button(COR_BOTAO,(LARGURA_TELA/2)-175,(ALTURA_TELA/2)+60,350,100,"Escolha à palavra")
 
 def main_menu(jogo):  
 
-    screen.fill((0, 0, 0))
-    draw_text('Jogo da forca', pygame.font.SysFont(FONTE, 60), (255, 255, 255), screen, 110, 60)
+    screen.fill((36, 36, 36))
+    
+    draw_text('Jogo da forca', pygame.font.SysFont(FONTE, 60), (255, 255, 255), screen, LARGURA_TELA/2 - 368/2, 60)
           
     # Lista de eventos MENU
     for event in pygame.event.get():
@@ -189,7 +195,8 @@ def main_menu(jogo):
             if startButton.isOver(pygame.mouse.get_pos()):
                 print("EVENTO: Botão Iniciar pressionado")
                 jogo.recebePalavra(listaPalavra[random.randint(0, len(listaPalavra)-1)])
-                print(jogo.palavra_reposta)
+                if MOSTRA_PALAVRA:
+                    print(jogo.palavra_reposta)
                 return False
             if customButton.isOver(pygame.mouse.get_pos()):
                 print("EVENTO: Botão Custom pressionado")
@@ -197,35 +204,37 @@ def main_menu(jogo):
                 return False
         if event.type == pygame.MOUSEMOTION:
             if startButton.isOver(pygame.mouse.get_pos()):
-                startButton.color = (255,0,0)
+                startButton.color = COR_BOTAO_SELECIONADO
             else:
-                startButton.color = (0,255,0)
+                startButton.color = COR_BOTAO
 
             if customButton.isOver(pygame.mouse.get_pos()):
-                customButton.color = (255,0,0)
+                customButton.color = COR_BOTAO_SELECIONADO
             else:
-                customButton.color = (0,255,0)
+                customButton.color = COR_BOTAO
 
-    startButton.draw(screen,(255,255,255))
-    customButton.draw(screen,(255,255,255))
+    startButton.draw(screen,COR_BOTAO_BORDA)
+    customButton.draw(screen,COR_BOTAO_BORDA)
     return True
 
 # JOGO DA FORCA
-deduziButton = button((0,255,0),200,50,250,100,"Tentar")
+deduziButton = button(COR_BOTAO,200,50,250,100,"Tentar")
+retaguloErradas = button(COR_BOTAO,10,310,LARGURA_TELA-20,80,"")
 
 def jogo_da_forca(jogo):
 
     deduzi = False # Variavel que libera para o usuario escolher a letra 
 
-    screen.fill((0,0,0))
+    screen.fill((36,36,36))
     jogo.status() # Verifica vitoria ou derrota
     
     # Design da tela
+    deduziButton.draw(screen,COR_BOTAO_BORDA)  
+    retaguloErradas.draw(screen,COR_BOTAO_BORDA)  
     draw_img(BASE_IMAGEM+str(jogo.vida)+".png",30,30,screen)
     draw_text(jogo.palavra_pergunta,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,200,170)
-    draw_text("Letras erradas:",pygame.font.SysFont(FONTE, 60),(255,255,255),screen,30,250)
-    draw_text(jogo.historico,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,25,300)
-    deduziButton.draw(screen,(255,255,255))    
+    draw_text("Letras erradas:",pygame.font.SysFont(FONTE, 35),(255,255,255),screen,30,265)
+    draw_text(jogo.historico,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,25,315)
 
     # LISTA DE EVENTO JOGO DA FORCA
     for event in pygame.event.get():
@@ -246,21 +255,21 @@ def jogo_da_forca(jogo):
                 deduzi = True 
         if event.type == pygame.MOUSEMOTION:
             if deduziButton.isOver(pygame.mouse.get_pos()):
-                deduziButton.color = (255,0,0)
+                deduziButton.color = COR_BOTAO_SELECIONADO
             else:
-                deduziButton.color = (0,255,0)
+                deduziButton.color = COR_BOTAO
 
     #jogo.derrota = True
-    #jogo.vitoria = True    
+    jogo.vitoria = True    
 
     if(jogo.vitoria):
-        draw_text("Você ganhou",pygame.font.SysFont(FONTE, 40),(0,255,0),screen,40,350)
-        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(255,255,255),screen,40,440)
+        draw_text("Você ganhou",pygame.font.SysFont(FONTE, 40),(0,255,0),screen,30,ALTURA_TELA-190)
+        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(255,255,255),screen,30,ALTURA_TELA-80)
 
     elif(jogo.derrota):
-        draw_text("Você perdeu",pygame.font.SysFont(FONTE, 40),(255,0,0),screen,40,350)
-        draw_text("A resposta é: "+jogo.palavra_reposta,pygame.font.SysFont(FONTE, 40),(255,0,0),screen,40,390)
-        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(255,255,255),screen,40,440)
+        draw_text("Você perdeu",pygame.font.SysFont(FONTE, 40),(255,0,0),screen,30,ALTURA_TELA-190)
+        draw_text("A resposta é: "+jogo.palavra_reposta,pygame.font.SysFont(FONTE, 40),(255,0,0),screen,30,ALTURA_TELA-140)
+        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(255,255,255),screen,30,ALTURA_TELA-80)
 
     elif(deduzi):
 
