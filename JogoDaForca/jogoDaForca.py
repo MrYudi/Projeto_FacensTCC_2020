@@ -20,8 +20,9 @@ FONTE = "georgia" # Não é recomendado alterar esse campo
 
 COR_BOTAO = (220,220,220)
 COR_BOTAO_SELECIONADO = (150,150,150)
-#COR_BOTAO_SELECIONADO = (153,21,21)
 COR_BOTAO_BORDA = (100,100,100)
+
+COR_RETANGULO = (200,200,200)
 
 BASE_IMAGEM = "JogoDaForca\imagem\\" # Local das imagens do jogo da forca
 listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis, é recomendado que não tenha mais de 10 letra.
@@ -221,7 +222,8 @@ def main_menu(jogo):
 
 # JOGO DA FORCA
 deduziButton = button(COR_BOTAO,200,50,250,100,"Tentar")
-retaguloErradas = button(COR_BOTAO,10,310,LARGURA_TELA-20,80,"")
+retaguloErradas = button(COR_RETANGULO,10,260,LARGURA_TELA-20,130,"")
+retaguloAviso = button(COR_RETANGULO,10,405,LARGURA_TELA-20,180,"")
 
 def jogo_da_forca(jogo):
 
@@ -232,11 +234,13 @@ def jogo_da_forca(jogo):
     
     # Design da tela
     deduziButton.draw(screen,COR_BOTAO_BORDA)  
-    retaguloErradas.draw(screen,COR_BOTAO_BORDA)  
+    retaguloErradas.draw(screen,COR_BOTAO_BORDA) 
+    retaguloAviso.draw(screen,COR_BOTAO_BORDA) 
+
     draw_img(BASE_IMAGEM+str(jogo.vida)+".png",30,30,screen)
-    draw_text(jogo.palavra_pergunta,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,200,170)
-    draw_text("Letras erradas:",pygame.font.SysFont(FONTE, 35),(255,255,255),screen,30,265)
-    draw_text(jogo.historico,pygame.font.SysFont(FONTE, 60),(255,255,255),screen,25,315)
+    draw_text(jogo.palavra_pergunta,pygame.font.SysFont(FONTE, 60),(0,0,0),screen,200,170)
+    draw_text("Letras erradas:",pygame.font.SysFont(FONTE, 35),(0,0,0),screen,30,265)
+    draw_text(jogo.historico,pygame.font.SysFont(FONTE, 60),(0,0,0),screen,25,315)
 
     # LISTA DE EVENTO JOGO DA FORCA
     for event in pygame.event.get():
@@ -265,13 +269,13 @@ def jogo_da_forca(jogo):
     #jogo.vitoria = True    
 
     if(jogo.vitoria):
-        draw_text("Você ganhou",pygame.font.SysFont(FONTE, 40),(0,255,0),screen,30,ALTURA_TELA-190)
-        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(255,255,255),screen,30,ALTURA_TELA-80)
+        draw_text("Você ganhou",pygame.font.SysFont(FONTE, 40),(63,152,58),screen,30,ALTURA_TELA-190)
+        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(0,0,0),screen,30,ALTURA_TELA-80)
 
     elif(jogo.derrota):
-        draw_text("Você perdeu",pygame.font.SysFont(FONTE, 40),(255,0,0),screen,30,ALTURA_TELA-190)
-        draw_text("A resposta é: "+jogo.palavra_reposta,pygame.font.SysFont(FONTE, 40),(255,0,0),screen,30,ALTURA_TELA-140)
-        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(255,255,255),screen,30,ALTURA_TELA-80)
+        draw_text("Você perdeu",pygame.font.SysFont(FONTE, 40),(230,0,0),screen,30,ALTURA_TELA-190)
+        draw_text("A resposta é: "+jogo.palavra_reposta,pygame.font.SysFont(FONTE, 40),(230,0,0),screen,30,ALTURA_TELA-140)
+        draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(0,0,0),screen,30,ALTURA_TELA-80)
 
     elif(deduzi):
 
