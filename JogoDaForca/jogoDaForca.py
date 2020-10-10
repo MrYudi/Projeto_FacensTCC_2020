@@ -18,9 +18,10 @@ LARGURA_TELA = 700 # Não é recomendado alterar esse campo
 ALTURA_TELA = 600 # Não é recomendado alterar esse campo
 FONTE = "georgia" # Não é recomendado alterar esse campo
 
-COR_BOTAO = (28,147,64)
-COR_BOTAO_SELECIONADO = (153,21,21)
-COR_BOTAO_BORDA = (0,96,174)
+COR_BOTAO = (220,220,220)
+COR_BOTAO_SELECIONADO = (150,150,150)
+#COR_BOTAO_SELECIONADO = (153,21,21)
+COR_BOTAO_BORDA = (100,100,100)
 
 BASE_IMAGEM = "JogoDaForca\imagem\\" # Local das imagens do jogo da forca
 listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis, é recomendado que não tenha mais de 10 letra.
@@ -170,15 +171,16 @@ def draw_img(source, x, y,surface):
 # TELAS
 
 # MENU PRINCIPAL
-startButton = button(COR_BOTAO,(LARGURA_TELA/2)-175,(ALTURA_TELA/2)-50,350,100,"Aleatório")
-customButton = button(COR_BOTAO,(LARGURA_TELA/2)-175,(ALTURA_TELA/2)+60,350,100,"Escolha à palavra")
+startButton = button(COR_BOTAO,(LARGURA_TELA/2)-175,ALTURA_TELA-240,350,100,"Aleatório")
+customButton = button(COR_BOTAO,(LARGURA_TELA/2)-175,ALTURA_TELA-120,350,100,"Escolha à palavra")
 
 def main_menu(jogo):  
-
-    screen.fill((36, 36, 36))
+    
+    screen.fill((48,72,136))
     
     draw_text('Jogo da forca', pygame.font.SysFont(FONTE, 60), (255, 255, 255), screen, LARGURA_TELA/2 - 368/2, 60)
-          
+    draw_img(BASE_IMAGEM+"menu_img.jpg",0,0,screen)
+
     # Lista de eventos MENU
     for event in pygame.event.get():
 
@@ -225,7 +227,7 @@ def jogo_da_forca(jogo):
 
     deduzi = False # Variavel que libera para o usuario escolher a letra 
 
-    screen.fill((36,36,36))
+    screen.fill((48,72,136))
     jogo.status() # Verifica vitoria ou derrota
     
     # Design da tela
@@ -260,7 +262,7 @@ def jogo_da_forca(jogo):
                 deduziButton.color = COR_BOTAO
 
     #jogo.derrota = True
-    jogo.vitoria = True    
+    #jogo.vitoria = True    
 
     if(jogo.vitoria):
         draw_text("Você ganhou",pygame.font.SysFont(FONTE, 40),(0,255,0),screen,30,ALTURA_TELA-190)
