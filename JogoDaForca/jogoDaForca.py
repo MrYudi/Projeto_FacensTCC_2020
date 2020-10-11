@@ -28,7 +28,7 @@ BASE_IMAGEM = "JogoDaForca\imagem\\" # Local das imagens do jogo da forca
 listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis, é recomendado que não tenha mais de 10 letra.
 ICON = BASE_IMAGEM + "icon.png" # ICON
 
-CAMERA = False # A letra será capturado pela camera ou console? Afins de DEBUG
+CAMERA = True # A letra será capturado pela camera ou console? Afins de DEBUG
 MOSTRA_PALAVRA = True # Caso sejá aleatorio, será exibido a palavra no console.
 #---------------------------------------------
 # CLASSES E OBJETOS
@@ -221,8 +221,8 @@ def main_menu(jogo):
     return True
 
 # JOGO DA FORCA
-deduziButton = button(COR_BOTAO,200,50,250,100,"Tentar")
-retaguloErradas = button(COR_RETANGULO,10,260,LARGURA_TELA-20,130,"")
+deduziButton = button(COR_BOTAO,230,50,250,100,"Tentar")
+retaguloErradas = button(COR_RETANGULO,10,280,LARGURA_TELA-20,100,"")
 retaguloAviso = button(COR_RETANGULO,10,405,LARGURA_TELA-20,180,"")
 
 def jogo_da_forca(jogo):
@@ -238,9 +238,8 @@ def jogo_da_forca(jogo):
     retaguloAviso.draw(screen,COR_BOTAO_BORDA) 
 
     draw_img(BASE_IMAGEM+str(jogo.vida)+".png",30,30,screen)
-    draw_text(jogo.palavra_pergunta,pygame.font.SysFont(FONTE, 60),(0,0,0),screen,200,170)
-    draw_text("Letras erradas:",pygame.font.SysFont(FONTE, 35),(0,0,0),screen,30,265)
-    draw_text(jogo.historico,pygame.font.SysFont(FONTE, 60),(0,0,0),screen,25,315)
+    draw_text(jogo.palavra_pergunta,pygame.font.SysFont(FONTE, 60),(0,0,0),screen,230,170)
+    draw_text(jogo.historico,pygame.font.SysFont(FONTE, 60),(0,0,0),screen,25,295)
 
     # LISTA DE EVENTO JOGO DA FORCA
     for event in pygame.event.get():
