@@ -22,6 +22,7 @@ TAMANHO_TEST = 0.2
 VALIDATION_SIZE = 1
 BATCH_SIZE = 4
 STEPS_PER_EPOCH = 16
+DROPOUT = 0.5
 
 # Carrega os dados
 print("Carrega dataset")
@@ -74,7 +75,7 @@ print("Fim - Ajeita os dados")
 print("Arquitetura")
 model = Sequential([
     SqueezeNet(input_shape=(227, 227, 3), include_top=False),
-    Dropout(0.5),
+    Dropout(DROPOUT),
     Convolution2D(len(CLASS_MAP), (1, 1), padding='valid'),
     Activation('relu'),
     GlobalAveragePooling2D(),
