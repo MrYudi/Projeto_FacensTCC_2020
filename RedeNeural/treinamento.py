@@ -86,7 +86,10 @@ model.compile(
     loss='categorical_crossentropy',
     metrics=['accuracy']
 )
+
 print("Fim - Arquitetura")
+
+model.summary()
 
 # checkpoint
 checkpoint = BASE_PATH + "bestModelTextGen.hdf5"
