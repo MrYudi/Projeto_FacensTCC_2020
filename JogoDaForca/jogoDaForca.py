@@ -70,6 +70,7 @@ class jogo_logica():
         self.letra = ""
         self.derrota = False
         self.vitoria = False
+        self.repetido = False
 
     # Reinicia as variaveis
     def restart(self):
@@ -79,6 +80,7 @@ class jogo_logica():
         self.letra = ""
         self.derrota = False
         self.vitoria = False
+        self.repetido = False
 
     # Verifica se a palavra ou letra pode esta dentro das regras
     def __verificar(self,palavra):
@@ -275,8 +277,9 @@ def jogo_da_forca(jogo):
         draw_text("Você perdeu",pygame.font.SysFont(FONTE, 40),(230,0,0),screen,30,ALTURA_TELA-190)
         draw_text("A resposta é: "+jogo.palavra_reposta,pygame.font.SysFont(FONTE, 40),(230,0,0),screen,30,ALTURA_TELA-140)
         draw_text('Aperte "Escape" para volta',pygame.font.SysFont(FONTE, 40),(0,0,0),screen,30,ALTURA_TELA-80)
-
+    
     elif(deduzi):
+        jogo.repetido = False
 
         # Recebe a letra do usuario (Camera? Console?)
         if CAMERA:  
@@ -287,9 +290,9 @@ def jogo_da_forca(jogo):
             jogo.recebeLetra() 
         
         # Essa letra já foi?
-        if(not (jogo.historico.find(jogo.letra) == -1)):
+        if(not (jogo.historico.find(jogo.letra) == -1) or not (jogo.palavra_pergunta.find(jogo.letra) == -1)):
             # Já foi
-            print("Essa letra já foi usado")
+            jogo.repetido = True
 
         # Existe essa letra?
         elif(not (jogo.palavra_reposta.find(jogo.letra) == -1)):
@@ -299,6 +302,12 @@ def jogo_da_forca(jogo):
         else:
             # Não encotrou, então perde vida
             jogo.perde_vida()
+
+    # Letra repetida?
+    elif(jogo.repetido):
+        draw_text("Letra repetida",pygame.font.SysFont(FONTE, 40),(230,0,0),screen,30,ALTURA_TELA-190)
+        draw_text("Escolha outra letra",pygame.font.SysFont(FONTE, 40),(230,0,0),screen,30,ALTURA_TELA-140)
+
 
     return False
 
