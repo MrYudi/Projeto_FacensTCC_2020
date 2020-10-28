@@ -67,5 +67,4 @@ Nesta tela, o usuario realiza o sinal do alfabeto de Libras, é necessario que o
 --------------
 - [ ] Coloca imagens e gifs
 - [ ] Ajeita nomes
-- [ ] Menciona o motivo da ç não ser usado na rede neural
 - [ ] Creditos
