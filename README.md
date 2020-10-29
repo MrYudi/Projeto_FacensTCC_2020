@@ -24,7 +24,7 @@ A estrutura do codigo pode ser organizado em duas categorias:
 ### Jogo da forca
 **JogoDaForca/JogoDaForca.py:** O codigo principal do jogo, ele deve ser execultado para iniciar o jogo.
 
-**JogoDaForca/CameraDeduz.py:** Um codigo auxilia sado pelo JogoDaForca/JogoDaForca.py, utilizado para enviar uma resposta da rede neural, no caso qual sinal do alfabeto de Libras foi representado na camera. 
+**JogoDaForca/CameraDeduz.py:** Um codigo auxilia usado pelo JogoDaForca/JogoDaForca.py, utilizado para enviar uma resposta da rede neural, no caso qual sinal do alfabeto de Libras foi representado na camera. 
 
 **JogoDaForca/imagens/..:** Imagens utilizadas no jogo.
 
