@@ -1,6 +1,13 @@
 # Projeto_FacensTCC_2020
 Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina o alfabeto de Libras apartir da gameficação.
 
+---------
+
+## Sumario teste
+https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#recursos-necess%C3%A1rios
+
+
+
 -----------------------------------
 
 ## Recursos necessários:
