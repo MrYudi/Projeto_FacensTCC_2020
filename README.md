@@ -76,7 +76,7 @@ Nesta tela, o usuario realiza o sinal do alfabeto de Libras. Para iniciar o proc
 
 A imagem abaixo contém exemplos do alfabeto de Libras
 
-![TabelaAlfabetoLibras.png]
+![](TabelaAlfabetoLibras.png)
 
 --------------
 
