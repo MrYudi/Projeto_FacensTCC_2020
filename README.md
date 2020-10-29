@@ -17,7 +17,7 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
 -----------------------------------
 
 ## Estrutura do codigo
-A estrutura dos script pode se organizado em duas categorias:
+A estrutura do codigo pode ser organizado em duas categorias:
  - **Jogo da forca** (o objetivo principal deste projeto)
  - **Rede Neural** (script de treinamento, coleta de dados, testes com a rede neural e etc...)
 
