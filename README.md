@@ -12,13 +12,13 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
 -----------------------------------
 
 ## :clipboard: Recursos necessários:
- 1. Uma *webcam*;
- 2. Python 3.6.8;
+ 1. Uma *webcam*; :camera:
+ 2. Python 3.6.8; :snake:
  3. As bibliotecas de python que pode ser encontrado no *requirements*, não é necessario as duas biblioteca ao mesmo tempo;
     - requirements.txt para utilizar a Rede Neural via CPU;
     - requirements_gpu.txt para utilizar a Rede Neural via GPU.
  4. Fundo Branco (pode ser um pano branco ou uma parede branca);
- 5. Luva com os dedos coloridos, conforme a imagem abaixo.
+ 5. Luva com os dedos coloridos, conforme a imagem abaixo. :gloves:
  
  **Imagem**
  
