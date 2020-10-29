@@ -32,6 +32,8 @@ A estrutura dos script pode se organizado em duas categorias:
 
 **redeNeural/Treinamento.py:** Script do treinamento da Rede Neural (SqueezeNet) e o local onde será localizado o arquivo da Rede Neural, incluido graficos de perca e accuracia.
 
+O Dataset utilizado no treinamento pode ser encontrado no **Dataset_TodasLetrasComLuvaEFundoBranco.rar**
+
 **salvaDataset.py:** Captura as imagens utilizadas para o treinamento da Rede Neural e já realiza a organização dela.
 
 **predict.py:** Prediz o resultado da imagem, usado afins de teste exclusivamente para Rede Neural.
