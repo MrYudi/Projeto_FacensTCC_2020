@@ -41,7 +41,7 @@ A estrutura dos script pode se organizado em duas categorias:
 -----------------------------------
 
 ## Como jogar:
-Antes de iniciar verifique se o arquivo **RedeNeural/CORRIGIRONOME** se encontra no local, caso não esteja descopacte **RedeNeural/RedeNeural_CORRIGIRONOME** dentro da pasta RedeNeural.
+[Antes de iniciar verifique] se o **arquivo RedeNeural/libras-alfabeto-model.h5** se encontra no local, caso não esteja descopacte **RedeNeural/RedeNeural_fundoBrancoComLuvas** dentro da pasta RedeNeural.
 
 Para iniciar deve ser execultado o **JogoDaForca/JogoDaForca.py**.
 
@@ -52,12 +52,12 @@ O Menu principal do jogo, onde o usuario terá duas escolhas:
 
 **IMAGEM**
 
-### Jogo: VERIFICARNOME
-Nesta tela, o usuario poderá vizualizar suas tentativas (pela imagem), quais letras acerto ou errou. Quando usuario for tenta deduzir uma letra, deve ser apertado o botão **NOME**, que irá direciona o usuario para tela Tentativa.
+### Jogo: 
+Nesta tela, o usuario poderá vizualizar suas tentativas (pela imagem), quais letras acerto ou errou. Quando usuario for tenta deduzir uma letra, deve ser apertado o botão **"Tentar"**, que irá direciona o usuario para tela Tentativa.
 
 **IMAGEM**
 
-O usuario pode desistir da partida apertando "Escape".
+O usuario pode desistir da partida apertando **"Escape"**.
 
 ### Tentativa:
 Nesta tela, o usuario realiza o sinal do alfabeto de Libras, é necessario que o usuario mantenha o sinal até ser confirmado a letra escolhida.
@@ -66,5 +66,4 @@ Nesta tela, o usuario realiza o sinal do alfabeto de Libras, é necessario que o
 
 --------------
 - [ ] Coloca imagens e gifs
-- [ ] Ajeita nomes
 - [ ] Creditos
