@@ -57,7 +57,7 @@ Para iniciar deve ser execultado o **JogoDaForca/JogoDaForca.py**.
 
 ### Menu Principal:
 O Menu principal do jogo, onde o usuario terá duas escolhas:
-- Sortia uma palavra pelo sistema. 
+- Sorteá uma palavra pelo sistema. 
 - Digita uma palavra, pode ser utilizado para teste e/ou como um segundo jogador, após o click, a palavra deve ser digitado no console. É recomendando uma palavra com no maximo 10 letras, não deve ser inserido letras com acentos e Ç.
 
 **IMAGEM**
