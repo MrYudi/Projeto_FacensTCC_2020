@@ -26,7 +26,7 @@ COR_RETANGULO = (200,200,200)
 
 BASE_IMAGEM = "JogoDaForca\imagem\\" # Local das imagens do jogo da forca
 listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis, é recomendado que não tenha mais de 10 letra.
-ICON = BASE_IMAGEM + "icon.png" # ICON
+ICON = BASE_IMAGEM + "icon.jpg" # ICON
 
 CAMERA = True # A letra será capturado pela camera ou console? Afins de DEBUG
 MOSTRA_PALAVRA = True # Caso sejá aleatorio, será exibido a palavra no console.
@@ -260,6 +260,7 @@ def jogo_da_forca(jogo):
             if deduziButton.isOver(pygame.mouse.get_pos()):
                 print("EVENTO: Botão deduzi pressionado")
                 deduzi = True 
+
         if event.type == pygame.MOUSEMOTION:
             if deduziButton.isOver(pygame.mouse.get_pos()):
                 deduziButton.color = COR_BOTAO_SELECIONADO
@@ -280,35 +281,44 @@ def jogo_da_forca(jogo):
     
     elif(deduzi):
         jogo.repetido = False
-
         # Recebe a letra do usuario (Camera? Console?)
         if CAMERA:  
             # Camera habilitado para IA
+
+            draw_text("Carregando a camera...",pygame.font.SysFont(FONTE, 40),(0,0,0),screen,30,ALTURA_TELA-190)
+            draw_text("Aguarde",pygame.font.SysFont(FONTE, 40),(0,0,0),screen,30,ALTURA_TELA-140)
+            pygame.display.update()
+    
             jogo.letra = subprocess.check_output([sys.executable, "JogoDaForca/cameraDeduz.py"]).decode("utf-8")[0]
+        
         else:
             # Recebe letra pelo console, apenas para debug
+            draw_text("Letra via console",pygame.font.SysFont(FONTE, 40),(0,0,0),screen,30,ALTURA_TELA-190)
+            draw_text("Digite a letra no console",pygame.font.SysFont(FONTE, 40),(0,0,0),screen,30,ALTURA_TELA-140)
+            pygame.display.update()
+    
             jogo.recebeLetra() 
         
-        # Essa letra já foi?
-        if(not (jogo.historico.find(jogo.letra) == -1) or not (jogo.palavra_pergunta.find(jogo.letra) == -1)):
-            # Já foi
-            jogo.repetido = True
+        if not jogo.letra == "?": # Análise foi feita com sucesso
+            # Essa letra já foi?
+            if(not (jogo.historico.find(jogo.letra) == -1) or not (jogo.palavra_pergunta.find(jogo.letra) == -1)):
+                # Já foi
+                jogo.repetido = True
 
-        # Existe essa letra?
-        elif(not (jogo.palavra_reposta.find(jogo.letra) == -1)):
-            # Encontrou
-            jogo.substitui()     
+            # Existe essa letra?
+            elif(not (jogo.palavra_reposta.find(jogo.letra) == -1)):
+                # Encontrou
+                jogo.substitui()     
 
-        else:
-            # Não encotrou, então perde vida
-            jogo.perde_vida()
-
+            else:
+                # Não encotrou, então perde vida
+                jogo.perde_vida()
+        
     # Letra repetida?
     elif(jogo.repetido):
-        draw_text("Letra repetida",pygame.font.SysFont(FONTE, 40),(230,0,0),screen,30,ALTURA_TELA-190)
-        draw_text("Escolha outra letra",pygame.font.SysFont(FONTE, 40),(230,0,0),screen,30,ALTURA_TELA-140)
-
-
+        draw_text("Letra repetida",pygame.font.SysFont(FONTE, 40),(0,0,0),screen,30,ALTURA_TELA-190)
+        draw_text("Escolha outra letra",pygame.font.SysFont(FONTE, 40),(0,0,0),screen,30,ALTURA_TELA-140)
+    
     return False
 
 #---------------------------------------------
