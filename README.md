@@ -7,8 +7,8 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
  1. Uma *webcam*;
  2. Python 3.6.8;
  3. As bibliotecas de python que pode ser encontrado no *requirements*, não é necessario as duas biblioteca ao mesmo tempo;
-    - requirements.txt para utilizar a Rede Neural via CPU
-    - requirements_gpu.txt para utilizar a Rede Neural via GPU
+    - requirements.txt para utilizar a Rede Neural via CPU;
+    - requirements_gpu.txt para utilizar a Rede Neural via GPU.
  4. Fundo Branco (pode ser um pano branco ou uma parede branca);
  5. Luva com os dedos coloridos, conforme a imagem abaixo.
  
@@ -62,10 +62,16 @@ Nesta tela, o usuario poderá vizualizar suas tentativas (pela imagem), quais le
 O usuario pode desistir da partida apertando **"Escape"**.
 
 ### Tentativa:
-~Nesta tela, o usuario realiza o sinal do alfabeto de Libras, é necessario que o usuario mantenha o sinal até ser confirmado a letra escolhida.~
+Nesta tela, o usuario realiza o sinal do alfabeto de Libras. Para iniciar o processo de análise é necessario que o usuario pressione **"Enter"** e mantenha o sinal (dentro do quadrado verde) até a analise ser concluida. Caso a letra não corresponde com sinal feito, é possivel tenta de novo pressionando **"Enter"**. Caso ao contrario, aperte **"Escape"** para retorna.
 
 **IMAGEM**
 
 --------------
+
+## Creditos: 
+Projeto desenvolvido por:
+- [Gabriel Yudi Sanefugi](https://github.com/MrYudi)
+- [Eloá Souza Camillo](https://github.com/EloaCamillo)
+
+--------------
 - [ ] Coloca imagens e gifs
-- [ ] Creditos
