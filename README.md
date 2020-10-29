@@ -51,7 +51,7 @@ O Dataset utilizado no treinamento pode ser encontrado no **Dataset_TodasLetrasC
 -----------------------------------
 
 ## :thinking: Como jogar:
-**Antes de iniciar, verifique se o arquivo RedeNeural/libras-alfabeto-model.h5** se encontra no local, caso não esteja descompacte **RedeNeural/RedeNeural_fundoBrancoComLuvas.rar** dentro da pasta *RedeNeural/..*.
+**Antes de iniciar, verifique se o arquivo RedeNeural/libras-alfabeto-model.h5** se encontra no local, caso não esteja descompacte **RedeNeural/RedeNeural_fundoBrancoComLuvas.rar** dentro da pasta **RedeNeural**.
 
 Para iniciar deve ser executado o **JogoDaForca/JogoDaForca.py**.
 
