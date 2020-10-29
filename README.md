@@ -81,8 +81,8 @@ A imagem abaixo contém exemplos do alfabeto de Libras:
 
 ## Créditos: 
 Projeto desenvolvido por:
-- [Gabriel Yudi Sanefugi](https://github.com/MrYudi)
-- [Eloá Souza Camillo](https://github.com/EloaCamillo)
+- :man_technologist: [Gabriel Yudi Sanefugi](https://github.com/MrYudi) 
+- :woman_technologist: [Eloá Souza Camillo](https://github.com/EloaCamillo)
 
 --------------
 - [ ] Coloca imagens e gifs
