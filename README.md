@@ -3,7 +3,7 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
 
 ---------
 
-## Sumário
+## Sumário: :man_technologist:
 - [Recursos necessários](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#recursos-necess%C3%A1rios)
 - [Estrutura do código](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#estrutura-do-c%C3%B3digo)
 - [Como jogar](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#como-jogar)
