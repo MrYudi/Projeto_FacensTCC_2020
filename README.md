@@ -62,7 +62,7 @@ Nesta tela, o usuario poderá vizualizar suas tentativas (pela imagem), quais le
 O usuario pode desistir da partida apertando **"Escape"**.
 
 ### Tentativa:
-Nesta tela, o usuario realiza o sinal do alfabeto de Libras, é necessario que o usuario mantenha o sinal até ser confirmado a letra escolhida.
+~Nesta tela, o usuario realiza o sinal do alfabeto de Libras, é necessario que o usuario mantenha o sinal até ser confirmado a letra escolhida.~
 
 **IMAGEM**
 
