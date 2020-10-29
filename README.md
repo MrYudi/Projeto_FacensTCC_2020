@@ -3,7 +3,7 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
 
 ---------
 
-## Sumário: :man_technologist:
+## :spiral_notepad: Sumário:
 - [Recursos necessários](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#recursos-necess%C3%A1rios)
 - [Estrutura do código](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#estrutura-do-c%C3%B3digo)
 - [Como jogar](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#como-jogar)
@@ -11,7 +11,7 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
 
 -----------------------------------
 
-## Recursos necessários:
+## :clipboard: Recursos necessários:
  1. Uma *webcam*;
  2. Python 3.6.8;
  3. As bibliotecas de python que pode ser encontrado no *requirements*, não é necessario as duas biblioteca ao mesmo tempo;
@@ -24,7 +24,7 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
  
 -----------------------------------
 
-## Estrutura do código:
+## :card_index_dividers: Estrutura do código:
 A estrutura do código pode ser organizado em duas categorias:
  - **Jogo da forca** (o objetivo principal deste projeto)
  - **Rede Neural** (script de treinamento, coleta de dados, testes com a rede neural e etc...)
@@ -50,7 +50,7 @@ O Dataset utilizado no treinamento pode ser encontrado no **Dataset_TodasLetrasC
 
 -----------------------------------
 
-## Como jogar:
+## :thinking: Como jogar:
 Antes de iniciar, verifique se o **arquivo RedeNeural/libras-alfabeto-model.h5** se encontra no local, caso não esteja descopacte **RedeNeural/RedeNeural_fundoBrancoComLuvas** dentro da pasta RedeNeural.
 
 Para iniciar deve ser execultado o **JogoDaForca/JogoDaForca.py**.
@@ -79,7 +79,7 @@ A imagem abaixo contém exemplos do alfabeto de Libras:
 
 --------------
 
-## Créditos: 
+## :electron: Créditos: 
 Projeto desenvolvido por:
 - :man_technologist: [Gabriel Yudi Sanefugi](https://github.com/MrYudi) 
 - :woman_technologist: [Eloá Souza Camillo](https://github.com/EloaCamillo)
