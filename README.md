@@ -3,10 +3,11 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
 
 ---------
 
-## Sumario teste
-https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#recursos-necess%C3%A1rios
-
-
+## Sumário
+[Recursos necessários](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#recursos-necess%C3%A1rios)
+[Estrutura do código](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#estrutura-do-codigo)
+[Como jogar](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#como-jogar)
+[Créditos](https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#creditos)
 
 -----------------------------------
 
@@ -23,8 +24,8 @@ https://github.com/MrYudi/Projeto_FacensTCC_2020/blob/master/README.md#recursos-
  
 -----------------------------------
 
-## Estrutura do codigo
-A estrutura do codigo pode ser organizado em duas categorias:
+## Estrutura do código
+A estrutura do código pode ser organizado em duas categorias:
  - **Jogo da forca** (o objetivo principal deste projeto)
  - **Rede Neural** (script de treinamento, coleta de dados, testes com a rede neural e etc...)
 
@@ -75,7 +76,7 @@ Nesta tela, o usuario realiza o sinal do alfabeto de Libras. Para iniciar o proc
 
 --------------
 
-## Creditos: 
+## Créditos: 
 Projeto desenvolvido por:
 - [Gabriel Yudi Sanefugi](https://github.com/MrYudi)
 - [Eloá Souza Camillo](https://github.com/EloaCamillo)
