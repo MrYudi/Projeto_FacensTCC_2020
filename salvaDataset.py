@@ -13,7 +13,7 @@ dicionario = { 255: 'NADA',
 77:'M',78:'N',79:'O',80:'P',81:'Q',82:'R',
 83:'S',84:'T',85:'U',86:'V',87:'W',88:'X',
 89:'Y',90:'Z'}
-count_frame = limite_frame = 30 # Quantas fotos serão feito?
+count_frame = limite_frame = 25 # Quantas fotos serão feito?
 delay_frame = 10 # Qual é o delay entre as fotos?
 
 if not os.path.isdir(path): 

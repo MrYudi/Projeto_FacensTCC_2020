@@ -18,10 +18,11 @@ BASE_PATH = 'RedeNeural/'
 GRAFICO_PATH = 'Grafico_rede'
 
 EPOCHS = 20
-TAMANHO_TEST = 0.2
+TAMANHO_TEST = 0.3
 VALIDATION_SIZE = 1
 BATCH_SIZE = 4
-STEPS_PER_EPOCH = 4
+STEPS_PER_EPOCH = 8
+DROPOUT = 0.5
 
 # Carrega os dados
 print("Carrega dataset")
@@ -74,7 +75,7 @@ print("Fim - Ajeita os dados")
 print("Arquitetura")
 model = Sequential([
     SqueezeNet(input_shape=(227, 227, 3), include_top=False),
-    Dropout(0.5),
+    Dropout(DROPOUT),
     Convolution2D(len(CLASS_MAP), (1, 1), padding='valid'),
     Activation('relu'),
     GlobalAveragePooling2D(),
@@ -85,7 +86,10 @@ model.compile(
     loss='categorical_crossentropy',
     metrics=['accuracy']
 )
+
 print("Fim - Arquitetura")
+
+model.summary()
 
 # checkpoint
 checkpoint = BASE_PATH + "bestModelTextGen.hdf5"
@@ -94,6 +98,8 @@ if os.path.isfile(checkpoint):
 
 # Separa os dados treino e teste
 X_train, X_test, y_train, y_test = train_test_split(np.array(data), np.array(labels), stratify=labels, test_size=TAMANHO_TEST, random_state=42)
+del data
+del labels
 
 # Configurações do treinamento
 mc = ModelCheckpoint(checkpoint, monitor='loss', verbose=1, save_best_only=True, mode='min')
