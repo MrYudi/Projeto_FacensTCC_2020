@@ -22,7 +22,7 @@ A estrutura dos script pode se organizado em duas categorias:
  - **Rede Neural** (script de treinamento, coleta de dados, testes com a rede neural e etc...)
 
 ### Jogo da forca
-**JogoDaForca/JogoDaForca.py:** O codigo principal do jogo, ele deve ser [execultado para iniciar o jogo.]
+**JogoDaForca/JogoDaForca.py:** O codigo principal do jogo, ele deve ser execultado para iniciar o jogo.
 
 **JogoDaForca/CameraDeduz.py:** Um codigo auxilia sado pelo JogoDaForca/JogoDaForca.py, utilizado para enviar uma resposta da rede neural, no caso qual sinal do alfabeto de Libras foi representado na camera. 
 
