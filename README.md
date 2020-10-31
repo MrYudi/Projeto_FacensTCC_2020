@@ -16,17 +16,17 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
  2. Python 3.6.8; :snake:
  3. As bibliotecas de Python que pode ser encontrado no *requirements*, não é necessário as duas biblioteca ao mesmo tempo;
     - requirements.txt para utilizar a Rede Neural via CPU;
-    ```
-    
-    pip install -r requirements.txt
     
     ```
+    pip install -r requirements.txt    
+    ```
+    
     - requirements_gpu.txt para utilizar a Rede Neural via GPU.
-    ```
     
+    ```
     pip install -r requirements_gpu.txt
-    
     ```
+    
  4. Fundo Branco (pode ser um pano branco ou uma parede branca);
  5. Luva com os dedos coloridos, conforme a imagem abaixo. :gloves:
  
