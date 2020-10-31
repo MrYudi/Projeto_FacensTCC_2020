@@ -60,7 +60,7 @@ O menu principal do jogo, onde o usuário terá duas escolhas:
 - Sorteia uma palavra pelo sistema. 
 - Digita uma palavra, pode ser utilizado para teste e/ou como um segundo jogador, após o click, a palavra deve ser digitado no console. É recomendando uma palavra com no máximo 10 letras, não deve ser inserido letras com acentos e Ç.
 
-<img src="/ImgGit/Menu.jpeg" width="350" height="315">
+<img src="/ImgGit/Menu.jpeg" width="50%" height="50%">
 
 ### Jogo: 
 Nesta tela, o usuário poderá visualizar suas tentativas (pela imagem), quais letras acerto ou errou. Quando usuário for tenta deduzir uma letra, deve ser apertado o botão **"Tentar"**, que irá direciona o usuário para tela Tentativa.
@@ -72,11 +72,11 @@ O usuário pode desistir da partida apertando **"Escape"**.
 ### Tentativa:
 Nesta tela, o usuário realiza o sinal do alfabeto de Libras. Para iniciar o processo de análise é necessário que o usuário pressione **"Enter"** e mantenha o sinal (dentro do quadrado verde) até a analise ser concluída. Caso a letra não corresponde com sinal feito, é possível tenta de novo pressionando **"Enter"**. Caso ao contrario, aperte **"Escape"** para retorna.
 
-**IMAGEM**
+<img src="/ImgGit/SimulandoM.png" width="30%" height="30%"><img src="/ImgGit/SimulandoO.png" width="30%" height="30%">
 
 A imagem abaixo contém exemplos do alfabeto de Libras:
 
-<img src="TabelaAlfabetoLibras.png" width="450" height="417">
+<img src="TabelaAlfabetoLibras.png" width="50%" height="50%">
 
 --------------
 
