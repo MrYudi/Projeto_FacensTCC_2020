@@ -20,7 +20,7 @@ Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina
  4. Fundo Branco (pode ser um pano branco ou uma parede branca);
  5. Luva com os dedos coloridos, conforme a imagem abaixo. :gloves:
  
- <img src="/ImgGit/luva.png" width="40%" height="40%">
+ <img src="/ImgGit/luva.jpeg" width="40%" height="40%">
  
 -----------------------------------
 
