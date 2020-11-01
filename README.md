@@ -2,7 +2,9 @@
 Esse projeto é um TCC sobre jogo da forca usando Libras, com objetivo de ensina o alfabeto de Libras a partir da gamificação.
 
 Game Jolt: https://gamejolt.com/games/LibrasVC/551341
+
 Gameplay: https://www.youtube.com/watch?v=tC0AmhWwS2w
+
 Demostrando todas as letras: https://www.youtube.com/watch?v=b9_IvxX_Dto
 
 ---------
