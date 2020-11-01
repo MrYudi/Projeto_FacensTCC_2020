@@ -25,11 +25,12 @@ COR_BOTAO_BORDA = (100,100,100)
 COR_RETANGULO = (200,200,200)
 
 BASE_IMAGEM = "JogoDaForca\imagem\\" # Local das imagens do jogo da forca
-listaPalavra = ["Torrada","Controle","Computador"] # Lista de palavra possiveis, é recomendado que não tenha mais de 10 letra.
+listaPalavra = ["Torrada","Controle","Computador","Bola","Gato","Cachorro",
+                "Madeira","Macaco","Casa","Elefante","Formiga"] # Lista de palavra possiveis, é recomendado que não tenha mais de 10 letra.
 ICON = BASE_IMAGEM + "icon.jpg" # ICON
 
 CAMERA = True # A letra será capturado pela camera ou console? Afins de DEBUG
-MOSTRA_PALAVRA = True # Caso sejá aleatorio, será exibido a palavra no console.
+MOSTRA_PALAVRA = False # Caso sejá aleatorio, será exibido a palavra no console.
 #---------------------------------------------
 # CLASSES E OBJETOS
 
