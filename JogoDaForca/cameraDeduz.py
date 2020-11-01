@@ -28,6 +28,7 @@ classe_anterior = classe_atual = '?' # Anterior -> deduçao antiga | atual -> da
 count_frame = count_filtro = 0
 analise = False # A camera pode começa a análisa
 fim = False # O programa terminou? pode confirmar sua saida?
+classe_valor = 0
 while(True):
     _, frame = video.read() # Captura o frame
     frame_original = frame.copy()
@@ -41,7 +42,9 @@ while(True):
     
     if(analise and count_frame >= frame_analise): # Análisa
         prediction = model.predict(np.array([frame])) # Prediz
-        classe_atual = dicionario[np.argmax(prediction, axis = 1)[0]] # Pega o maior valor da array
+        classe_key = np.argmax(prediction, axis = 1)[0] # Pega o maior valor da array
+        classe_atual = dicionario[classe_key]  # Qual é a letra?
+        classe_valor = prediction[0][classe_key] # Qual é o seu valor?
 
         # Formatação da predict, apenas afins de debug
         #textoPrediction = ''
@@ -60,6 +63,7 @@ while(True):
 
         classe_anterior = classe_atual
         count_frame = 0
+        
     
     k = cv2.waitKey(30) & 0xff # Escape
     if k == 27:
@@ -76,8 +80,10 @@ while(True):
     if not analise and not fim: # Análise ainda nao foi feita
         cv2.putText(frame_original,'Aperte "Enter" para iniciar',(60,40), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),2,cv2.LINE_AA) # Coloque o texto da classe_atual
     elif not analise and fim: # Análise foi feita, mas precisa ser confirmada
-        cv2.putText(frame_original,'Aperte "Escape" para sair ou',(60,40), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),2,cv2.LINE_AA) # Coloque o texto da classe_atual 
+        cv2.putText(frame_original,'Aperte "Escape" para concluir ou',(60,40), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),2,cv2.LINE_AA) # Coloque o texto da classe_atual 
         cv2.putText(frame_original,'"Enter" para tenta de novo',(60,80), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),2,cv2.LINE_AA) # Coloque o texto da classe_atual
+    else:
+        cv2.putText(frame_original,str(round(classe_valor,3)),(60,40), cv2.FONT_HERSHEY_SIMPLEX, 1,(0,0,255),2,cv2.LINE_AA) # Coloque o texto da classe_atual
     
     #cv2.imshow("Imagem capturada", frame) # Exiba imagem que sera enviado para rede neural, afins de Debug
     cv2.imshow("Camera", frame_original) # Exiba

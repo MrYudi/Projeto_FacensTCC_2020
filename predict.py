@@ -28,6 +28,7 @@ print("Modelo carregado")
 # Inicializa
 count_frame = 0
 classe = '?'
+classeValor = 0
 X = 200
 Y = 60
 
@@ -50,6 +51,8 @@ while(1):
         textoPrediction = ''
         for d,p in zip(dicionarioAtual.keys(),prediction[0]):
             textoPrediction = textoPrediction + str(dicionarioAtual[d]) +"="+str(round(p, 5))+" | "
+            if(dicionarioAtual[d] == classe):
+                classeValor = p
 
         print()
         print(classe)
@@ -60,6 +63,8 @@ while(1):
     k = cv2.waitKey(30) & 0xff # Escape
     if k == 27:
         break
+
+    cv2.putText(frame_original,str(round(classeValor,3)),(100,50), cv2.FONT_HERSHEY_SIMPLEX, 2,(0,0,255),2,cv2.LINE_AA) # Coloque o texto da classe
 
     cv2.rectangle(frame_original, (X, Y), (X + tamanho_img, Y + tamanho_img), (0,255,0), 0)
     cv2.imshow("Video", frame) # Exiba
