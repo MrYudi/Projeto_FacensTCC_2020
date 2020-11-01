@@ -75,14 +75,14 @@ O menu principal do jogo, onde o usuário terá duas escolhas:
 ### Jogo: 
 Nesta tela, o usuário poderá visualizar suas tentativas (pela imagem), quais letras acerto ou errou. Quando usuário for tenta deduzir uma letra, deve ser apertado o botão **"Tentar"**, que irá direciona o usuário para tela Tentativa.
 
-**IMAGEM**
+<img src="/ImgGit/jogo.png" width="30%" height="30%"> <img src="/ImgGit/vitoria.png" width="30%" height="30%"> <img src="/ImgGit/derrota.png" width="30%" height="30%">
 
 O usuário pode desistir da partida apertando **"Escape"**.
 
 ### Tentativa:
 Nesta tela, o usuário realiza o sinal do alfabeto de Libras. Para iniciar o processo de análise é necessário que o usuário pressione **"Enter"** e mantenha o sinal (dentro do quadrado verde) até a analise ser concluída. Caso a letra não corresponde com sinal feito, é possível tenta de novo pressionando **"Enter"**. Caso ao contrario, aperte **"Escape"** para retorna.
 
-<img src="/ImgGit/SimulandoM.png" width="30%" height="30%"><img src="/ImgGit/SimulandoO.png" width="30%" height="30%">
+<img src="/ImgGit/SimulandoM.png" width="30%" height="30%"> <img src="/ImgGit/SimulandoO.png" width="30%" height="30%">
 
 A imagem abaixo contém exemplos do alfabeto de Libras:
 
@@ -94,3 +94,6 @@ A imagem abaixo contém exemplos do alfabeto de Libras:
 Projeto desenvolvido por:
 - :man_technologist: [Gabriel Yudi Sanefugi](https://github.com/MrYudi) 
 - :woman_technologist: [Eloá Souza Camillo](https://github.com/EloaCamillo)
+
+Imagens de JogoDaForca/imagem/0.png até JogoDaForca/imagem/8.png desenvolvido por:
+- :woman_artist: [Mary Kimiko Zaima](https://www.instagram.com/marykimiko580/)
