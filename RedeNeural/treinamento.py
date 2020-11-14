@@ -131,7 +131,7 @@ plt.title('Modelo Perda')
 plt.ylabel('Perda')
 plt.xlabel('Epoca')
 plt.legend(['train', 'test'], loc='upper left')
-plt.savefig(BASE_PATH+GRAFICO_PATH+"/perca_"+timestampStr+".png")
+plt.savefig(BASE_PATH+GRAFICO_PATH+"/perda_"+timestampStr+".png")
 plt.clf()
 
 # Salva o modelo
